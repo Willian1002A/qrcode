@@ -2,11 +2,9 @@
     font-family: 'RobotoMono';
     src: url('../fonts/RobotoMono-Thin.ttf');
   }
-  
-  * {
-    font-family: 'RobotoMono', monospace;
-  }
-
+* {
+  font-family: 'RobotoMono', monospace;
+}
 body {
     display: flex;
     justify-content: center;
@@ -15,14 +13,76 @@ body {
     color: #FFF;
     background: linear-gradient(to right, rgb(19, 106, 138), rgb(38, 120, 113));
 }
-
 input {
     font-size: 2em;
     margin-bottom: 30px;
 }
-
+#app{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .output {
     border: 1px solid #222;
-    padding: 30px 15px;
+    /* padding: 30px 15px; */
     background-color: #0006;
+}
+
+*{
+  --base-resolution: 1920;
+  --actual-resolution: 360;
+  --mult-factor: calc(var(--actual-resolution)/var(--base-resolution));
+}
+@media (min-width: 640px) {
+  *{
+      --actual-resolution: 640;
+      --mult-factor: calc(var(--actual-resolution)/var(--base-resolution));
+  }
+}
+@media (min-width: 1024px) {
+  *{
+      --actual-resolution: 1024;
+      --mult-factor: calc(1024/1920);
+  }
+}
+@media (min-width: 1360px) {
+  *{
+      --actual-resolution: 1360;
+      --mult-factor: calc(var(--actual-resolution)/var(--base-resolution));
+  }
+}
+@media (min-width: 1920px) {
+  *{
+      --actual-resolution: 1920;
+      --mult-factor: calc(var(--actual-resolution)/var(--base-resolution));
+  }
+}
+*{
+  --app-h1-font-size: calc(100px * var(--mult-factor));
+  --input-font-size: calc(2em * var(--mult-factor));
+  --input-margin-bottom: calc(30px * var(--mult-factor));
+  --output-border-size: calc(1px * var(--mult-factor));
+  --output-padding-y: calc(30px * var(--mult-factor));
+  --output-padding-x: calc(30px * var(--mult-factor));
+  --output-img-width: calc(400px * var(--mult-factor));
+
+}
+
+input {
+  font-size: var(--input-font-size);
+  margin-bottom: var(--input-margin-bottom);
+}
+
+#app > h1{
+  font-size: var(--app-h1-font-size);
+}
+.output {
+  border: var(--output-border-size) solid #222;
+  padding: var(--output-padding-y) var(--output-padding-x);
+  width: var(--output-img-width);
+  height: var(--output-img-width);
+}
+.output > img {
+  width: 100%;
 }
